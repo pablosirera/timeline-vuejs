@@ -6,7 +6,7 @@
 npm install timeline-vuejs --save
 ```
 
-```javascript
+```js
 import Vue from 'vue'
 import Timeline from 'timeline-vuejs'
 
@@ -15,7 +15,7 @@ Vue.use(Timeline)
 
 ## Usage
 
-```javascript
+```html
 <template>
   <Timeline
     :timeline-items="timelineItems"

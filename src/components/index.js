@@ -1,14 +1,6 @@
-import Timeline from './Timeline.vue'
-import TimelineItems from './TimelineItems.vue'
 import Vue from 'vue'
+import Timeline from './Timeline.vue'
 
-const components = {
-  Timeline,
-  TimelineItems
-}
+Vue.component(Timeline.name, Timeline)
 
-Object.keys(components).forEach(name => {
-  Vue.component(name, components[name])
-})
-
-export default components
+export default Timeline

@@ -7,10 +7,23 @@ npm install timeline-vuejs --save
 ```
 
 ```js
-import Vue from 'vue'
+// main.js
+import '../node_modules/timeline-vuejs/dist/timeline-vuejs.css'
+```
+
+```html
+// component.vue
+<script>
 import Timeline from 'timeline-vuejs'
 
-Vue.use(Timeline)
+export default {
+  // ...
+  components: {
+    Timeline
+  }
+  // ...
+}
+</script>
 ```
 
 ## Usage

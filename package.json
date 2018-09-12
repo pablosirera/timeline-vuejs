@@ -1,6 +1,6 @@
 {
   "name": "timeline-vuejs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/timeline-vuejs.common.js",
   "description": "Minimalist Timeline with VueJS",
   "scripts": {

@@ -1,5 +1,7 @@
 # timeline-vuejs
 
+[Demo Timeline Vue](https://codesandbox.io/s/n094ypklvl)
+
 ## Install
 
 ```
@@ -42,7 +44,8 @@ export default {
   components: {
     Timeline
   }
-  data: {
+  data: () => ({
+    messageWhenNoItems: 'There arent items',
     timelineItems: [
       {
         year: {
@@ -65,7 +68,7 @@ export default {
         ]
       }
     ]
-  }
+  })
 }
 </script>
 ```

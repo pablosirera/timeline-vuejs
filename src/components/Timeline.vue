@@ -2,8 +2,8 @@
   <section class="timeline">
     <div class="wrapper-timeline" v-if="hasItems">
       <div
-        class="wrapper-item"
         v-for="(timelineContent, timelineIndex) in timelineItems"
+        :class="wrapperItemClass"
         :key="timelineIndex">
         <div class="section-year">
           <p class="year">
@@ -13,17 +13,7 @@
             {{ timelineContent.year.from }}
           </p>
         </div>
-        <section class="timeline-items">
-          <div
-            class="item"
-            v-for="(item, index) in timelineContent.items"
-            :key="index">
-            <span class="dot"></span>
-            <h3 class="month-item">{{ item.nameMonth }}</h3>
-            <h4 class="title-item" v-html="item.title"></h4>
-            <p class="description-item" v-html="item.description"></p>
-          </div>
-        </section>
+        <TimelineItem :items-timeline="timelineContent.items"/>
       </div>
     </div>
     <p v-else>{{ messageWhenNoItems }}</p>
@@ -31,8 +21,11 @@
 </template>
 
 <script>
+import TimelineItem from './TimelineItem.vue'
+
 export default {
   name: 'Timeline',
+  components: { TimelineItem },
   props: {
     timelineItems: {
       type: Array,
@@ -40,11 +33,25 @@ export default {
     },
     messageWhenNoItems: {
       type: String
+    },
+    colorDots: {
+      type: String,
+      default: '#2da1bf'
+    },
+    uniqueTimeline: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
     hasItems() {
       return !!this.timelineItems.length
+    },
+    wrapperItemClass() {
+      return {
+        'wrapper-item': true,
+        'unique-timeline': this.uniqueTimeline
+      }
     }
   }
 }
@@ -74,38 +81,8 @@ export default {
         margin: 0;
       }
     }
-    .timeline-items {
-      .item {
-        border-left: 5px solid #ccd5db;
-        padding: 20px 0 20px 15px;
-        position: relative;
-      }
-      .month-item {
-        margin: 0;
-        text-transform: uppercase;
-        font-size: 18px;
-        letter-spacing: 2px;
-      }
-      .title-item {
-        margin: 0;
-        padding: 5px 0;
-        font-size: 16px;
-        font-weight: 500;
-      }
-      .description-item {
-        font-weight: 100;
-        margin: 0;
-      }
-      .dot {
-        display: block;
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: #2da1bf;
-        left: -10px;
-        top: 26px;
-      }
+    &.unique-timeline {
+      margin-bottom: 0;
     }
   }
 }

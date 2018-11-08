@@ -20,7 +20,7 @@ export default {
       {
         year: {
           from: '2017',
-          to: '2018'
+          to: 'Currently'
         },
         items: [
           {

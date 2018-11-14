@@ -6,10 +6,14 @@
         :class="wrapperItemClass"
         :key="timelineIndex">
         <div class="section-year">
-          <p class="year">
+          <p
+            v-if="timelineContent.year.to"
+            class="year">
             {{ timelineContent.year.to }}
           </p>
-          <p class="year">
+          <p
+            v-if="timelineContent.year.from"
+            class="year">
             {{ timelineContent.year.from }}
           </p>
         </div>

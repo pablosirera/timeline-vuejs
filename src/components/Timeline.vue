@@ -7,17 +7,12 @@
         :key="timelineIndex">
         <div class="section-year">
           <p
-            v-if="timelineContent.year.to"
+            v-if="hasYear(timelineContent)"
             class="year">
-            {{ timelineContent.year.to }}
-          </p>
-          <p
-            v-if="timelineContent.year.from"
-            class="year">
-            {{ timelineContent.year.from }}
+            {{ getYear(timelineContent.from) }}
           </p>
         </div>
-        <TimelineItem :items-timeline="timelineContent.items"/>
+        <TimelineItem :item-timeline="timelineContent"/>
       </div>
     </div>
     <p v-else>{{ messageWhenNoItems }}</p>
@@ -44,7 +39,7 @@ export default {
     },
     uniqueTimeline: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   computed: {
@@ -56,6 +51,14 @@ export default {
         'wrapper-item': true,
         'unique-timeline': this.uniqueTimeline
       }
+    }
+  },
+  methods: {
+    getYear(date) {
+      return date.getFullYear()
+    },
+    hasYear(dataTimeline) {
+      return dataTimeline.hasOwnProperty('from') && dataTimeline.from !== undefined
     }
   }
 }
@@ -80,7 +83,7 @@ export default {
       align-items: flex-end;
       padding: 15px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       .year {
         margin: 0;
       }

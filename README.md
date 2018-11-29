@@ -76,3 +76,12 @@ export default {
 }
 </script>
 ```
+
+## Available props
+
+| **Props** | **Type** | **Default** | **Description** |
+|:---|:---:|:---|:---|
+| timelineItems | Array | [ ] | Items value of the timeline |
+| messageWhenNoItems | String |  | Message when there are no items |
+| colorDots | String | <span style="background-color:#2da1bf;">#2da1bf</span> | Color of the dots |
+| uniqueTimeline | Boolean | false | If true, the timeline isn't separated |

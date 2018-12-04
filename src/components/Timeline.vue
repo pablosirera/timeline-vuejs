@@ -3,13 +3,13 @@
     <div class="wrapper-timeline" v-if="hasItems">
       <div
         v-for="(timelineContent, timelineIndex) in dataTimeline"
-        :class="wrapperItemClass"
+        :class="wrapperItemClass(timelineIndex)"
         :key="timelineIndex">
         <div class="section-year">
           <p
             v-if="hasYear(timelineContent)"
             class="year">
-            {{ getYear(timelineContent.from) }}
+            {{ getYear(timelineContent) }}
           </p>
         </div>
         <TimelineItem :item-timeline="timelineContent"/>
@@ -41,6 +41,10 @@ export default {
       type: Boolean,
       default: false
     },
+    uniqueYear: {
+      type: Boolean,
+      default: false
+    },
     order: {
       type: String
     }
@@ -49,12 +53,6 @@ export default {
     hasItems() {
       return !!this.timelineItems.length
     },
-    wrapperItemClass() {
-      return {
-        'wrapper-item': true,
-        'unique-timeline': this.uniqueTimeline
-      }
-    },
     dataTimeline() {
       if (this.order === 'desc') return this.orderItems(this.timelineItems, 'desc')
       if (this.order === 'asc') return this.orderItems(this.timelineItems, 'asc')
@@ -62,8 +60,32 @@ export default {
     }
   },
   methods: {
+    wrapperItemClass(timelineIndex) {
+      const isSameYearPreviousAndCurrent = this.checkYearTimelineItem(timelineIndex)
+      const isUniqueYear =
+        this.uniqueYear && isSameYearPreviousAndCurrent && this.order !== undefined
+      return {
+        'wrapper-item': true,
+        'unique-timeline': this.uniqueTimeline || isUniqueYear
+      }
+    },
+    checkYearTimelineItem(timelineIndex) {
+      const previousItem = this.dataTimeline[timelineIndex - 1]
+      const nextItem = this.dataTimeline[timelineIndex + 1]
+      const currentItem = this.dataTimeline[timelineIndex]
+      if (!previousItem || !nextItem) {
+        return false
+      }
+      const fullPreviousYear = this.getYear(previousItem)
+      const fullNextYear = this.getYear(nextItem)
+      const fullCurrentYear = this.getYear(currentItem)
+      return (
+        (fullPreviousYear === fullCurrentYear && fullCurrentYear === fullNextYear) ||
+        fullCurrentYear === fullNextYear
+      )
+    },
     getYear(date) {
-      return date.getFullYear()
+      return date.from.getFullYear()
     },
     hasYear(dataTimeline) {
       return dataTimeline.hasOwnProperty('from') && dataTimeline.from !== undefined

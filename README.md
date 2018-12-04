@@ -50,26 +50,30 @@ export default {
   }
   data: () => ({
     messageWhenNoItems: 'There are not items',
-    timelineItems: [
+    dataTimeline: [
       {
-        year: {
-          from: '2017',
-          to: '2018'
-        },
-        items: [
-          {
-            nameMonth: 'February',
-            title: 'Five',
-            description:
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
-          },
-          {
-            nameMonth: 'January',
-            title: 'Five',
-            description:
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
-          }
-        ]
+        from: new Date(2018, 7),
+        title: 'Name',
+        description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
+      },
+      {
+        from: new Date(2016, 1),
+        title: 'Name',
+        description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
+      },
+      {
+        from: new Date(2016, 6),
+        title: 'Name',
+        description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
+      },
+      {
+        from: new Date(2012, 1),
+        title: 'Name',
+        description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum architecto dolor, vitae magnam voluptate accusantium assumenda numquam error mollitia, officia facere consequuntur reprehenderit cum voluptates, ea tempore beatae unde.'
       }
     ]
   })
@@ -77,11 +81,38 @@ export default {
 </script>
 ```
 
+## Example with order
+
+```html
+<template>
+  <Timeline
+    :timeline-items="timelineItems"
+    :message-when-no-items="messageWhenNoItems"
+    order="desc"/>
+</template>
+...
+```
+
+## Example with unique year
+
+```html
+<template>
+  <Timeline
+    :timeline-items="timelineItems"
+    :message-when-no-items="messageWhenNoItems"
+    :unique-year="true"
+    order="asc"/>
+</template>
+...
+```
+
 ## Available props
 
-| **Props** | **Type** | **Default** | **Description** |
-|:---|:---:|:---|:---|
-| timelineItems | Array | [ ] | Items value of the timeline |
-| messageWhenNoItems | String |  | Message when there are no items |
-| colorDots | String | <span style="background-color:#2da1bf;">#2da1bf</span> | Color of the dots |
-| uniqueTimeline | Boolean | false | If true, the timeline isn't separated |
+| **Props**          |       **Type**       | **Default**                                            | **Description**                                             |
+| :----------------- | :------------------: | :----------------------------------------------------- | :---------------------------------------------------------- |
+| timelineItems      |        Array         | [ ]                                                    | Items value of the timeline                                 |
+| messageWhenNoItems |        String        |                                                        | Message when there are no items                             |
+| colorDots          |        String        | <span style="background-color:#2da1bf;">#2da1bf</span> | Color of the dots                                           |
+| uniqueTimeline     |       Boolean        | false                                                  | If true, the timeline isn't separated                       |
+| uniqueYear         |       Boolean        | false                                                  | If true, the timeline isn't separated when is the same year |
+| order              | String (desc or asc) |                                                        | Type of order                                               |

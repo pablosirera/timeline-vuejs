@@ -2,22 +2,17 @@
   <section class="timeline">
     <div class="wrapper-timeline" v-if="hasItems">
       <div
-        v-for="(timelineContent, timelineIndex) in timelineItems"
-        :class="wrapperItemClass"
+        v-for="(timelineContent, timelineIndex) in dataTimeline"
+        :class="wrapperItemClass(timelineIndex)"
         :key="timelineIndex">
         <div class="section-year">
           <p
-            v-if="timelineContent.year.to"
+            v-if="hasYear(timelineContent)"
             class="year">
-            {{ timelineContent.year.to }}
-          </p>
-          <p
-            v-if="timelineContent.year.from"
-            class="year">
-            {{ timelineContent.year.from }}
+            {{ getYear(timelineContent) }}
           </p>
         </div>
-        <TimelineItem :items-timeline="timelineContent.items"/>
+        <TimelineItem :item-timeline="timelineContent"/>
       </div>
     </div>
     <p v-else>{{ messageWhenNoItems }}</p>
@@ -44,18 +39,78 @@ export default {
     },
     uniqueTimeline: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    uniqueYear: {
+      type: Boolean,
+      default: false
+    },
+    order: {
+      type: String
     }
   },
   computed: {
     hasItems() {
       return !!this.timelineItems.length
     },
-    wrapperItemClass() {
+    dataTimeline() {
+      if (this.order === 'desc') return this.orderItems(this.timelineItems, 'desc')
+      if (this.order === 'asc') return this.orderItems(this.timelineItems, 'asc')
+      return this.timelineItems
+    }
+  },
+  methods: {
+    wrapperItemClass(timelineIndex) {
+      const isSameYearPreviousAndCurrent = this.checkYearTimelineItem(timelineIndex)
+      const isUniqueYear =
+        this.uniqueYear && isSameYearPreviousAndCurrent && this.order !== undefined
       return {
         'wrapper-item': true,
-        'unique-timeline': this.uniqueTimeline
+        'unique-timeline': this.uniqueTimeline || isUniqueYear
       }
+    },
+    checkYearTimelineItem(timelineIndex) {
+      const previousItem = this.dataTimeline[timelineIndex - 1]
+      const nextItem = this.dataTimeline[timelineIndex + 1]
+      const currentItem = this.dataTimeline[timelineIndex]
+      if (!previousItem || !nextItem) {
+        return false
+      }
+      const fullPreviousYear = this.getYear(previousItem)
+      const fullNextYear = this.getYear(nextItem)
+      const fullCurrentYear = this.getYear(currentItem)
+      return (
+        (fullPreviousYear === fullCurrentYear && fullCurrentYear === fullNextYear) ||
+        fullCurrentYear === fullNextYear
+      )
+    },
+    getYear(date) {
+      return date.from.getFullYear()
+    },
+    hasYear(dataTimeline) {
+      return dataTimeline.hasOwnProperty('from') && dataTimeline.from !== undefined
+    },
+    getTimelineItemsAssembled(items) {
+      const itemsGroupByYear = []
+      items.forEach(item => {
+        const fullTime = item.from.getTime()
+        if (itemsGroupByYear[fullTime]) {
+          return itemsGroupByYear[fullTime].push(item)
+        }
+        itemsGroupByYear[fullTime] = [item]
+      })
+      return itemsGroupByYear
+    },
+    orderItems(items, typeOrder) {
+      const itemsGrouped = this.getTimelineItemsAssembled(items)
+      const keysItemsGrouped = Object.keys(itemsGrouped)
+      const timeItemsOrdered = keysItemsGrouped.sort((a, b) => {
+        if (typeOrder === 'desc') {
+          return b - a
+        }
+        return a - b
+      })
+      return timeItemsOrdered.map(timeItem => itemsGrouped[timeItem]).flat()
     }
   }
 }
@@ -80,7 +135,7 @@ export default {
       align-items: flex-end;
       padding: 15px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       .year {
         margin: 0;
       }

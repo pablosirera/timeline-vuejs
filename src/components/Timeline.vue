@@ -56,8 +56,8 @@ export default {
       }
     },
     dataTimeline() {
-      if (this.order === 'desc') return this.orderDesc(this.timelineItems)
-      if (this.order === 'asc') return this.orderAsc(this.timelineItems)
+      if (this.order === 'desc') return this.orderItems(this.timelineItems, 'desc')
+      if (this.order === 'asc') return this.orderItems(this.timelineItems, 'asc')
       return this.timelineItems
     }
   },
@@ -73,23 +73,21 @@ export default {
       items.forEach(item => {
         const fullTime = item.from.getTime()
         if (itemsGroupByYear[fullTime]) {
-          itemsGroupByYear[fullTime].push(item)
-        } else {
-          itemsGroupByYear[fullTime] = [item]
+          return itemsGroupByYear[fullTime].push(item)
         }
+        itemsGroupByYear[fullTime] = [item]
       })
       return itemsGroupByYear
     },
-    orderDesc(items) {
+    orderItems(items, typeOrder) {
       const itemsGrouped = this.getTimelineItemsAssembled(items)
       const keysItemsGrouped = Object.keys(itemsGrouped)
-      const timeItemsOrdered = keysItemsGrouped.sort((a, b) => b - a)
-      return timeItemsOrdered.map(timeItem => itemsGrouped[timeItem]).flat()
-    },
-    orderAsc(items) {
-      const itemsGrouped = this.getTimelineItemsAssembled(items)
-      const keysItemsGrouped = Object.keys(itemsGrouped)
-      const timeItemsOrdered = keysItemsGrouped.sort((a, b) => a - b)
+      const timeItemsOrdered = keysItemsGrouped.sort((a, b) => {
+        if (typeOrder === 'desc') {
+          return b - a
+        }
+        return a - b
+      })
       return timeItemsOrdered.map(timeItem => itemsGrouped[timeItem]).flat()
     }
   }

@@ -2,7 +2,7 @@
   <section class="timeline">
     <div class="wrapper-timeline" v-if="hasItems">
       <div
-        v-for="(timelineContent, timelineIndex) in timelineItems"
+        v-for="(timelineContent, timelineIndex) in dataTimeline"
         :class="wrapperItemClass"
         :key="timelineIndex">
         <div class="section-year">
@@ -40,6 +40,9 @@ export default {
     uniqueTimeline: {
       type: Boolean,
       default: false
+    },
+    order: {
+      type: String
     }
   },
   computed: {
@@ -51,6 +54,11 @@ export default {
         'wrapper-item': true,
         'unique-timeline': this.uniqueTimeline
       }
+    },
+    dataTimeline() {
+      if (this.order === 'desc') return this.orderDesc(this.timelineItems)
+      if (this.order === 'asc') return this.orderAsc(this.timelineItems)
+      return this.timelineItems
     }
   },
   methods: {
@@ -59,6 +67,30 @@ export default {
     },
     hasYear(dataTimeline) {
       return dataTimeline.hasOwnProperty('from') && dataTimeline.from !== undefined
+    },
+    getTimelineItemsAssembled(items) {
+      const itemsGroupByYear = []
+      items.forEach(item => {
+        const fullTime = item.from.getTime()
+        if (itemsGroupByYear[fullTime]) {
+          itemsGroupByYear[fullTime].push(item)
+        } else {
+          itemsGroupByYear[fullTime] = [item]
+        }
+      })
+      return itemsGroupByYear
+    },
+    orderDesc(items) {
+      const itemsGrouped = this.getTimelineItemsAssembled(items)
+      const keysItemsGrouped = Object.keys(itemsGrouped)
+      const timeItemsOrdered = keysItemsGrouped.sort((a, b) => b - a)
+      return timeItemsOrdered.map(timeItem => itemsGrouped[timeItem]).flat()
+    },
+    orderAsc(items) {
+      const itemsGrouped = this.getTimelineItemsAssembled(items)
+      const keysItemsGrouped = Object.keys(itemsGrouped)
+      const timeItemsOrdered = keysItemsGrouped.sort((a, b) => a - b)
+      return timeItemsOrdered.map(timeItem => itemsGrouped[timeItem]).flat()
     }
   }
 }

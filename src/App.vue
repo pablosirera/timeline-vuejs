@@ -11,7 +11,7 @@
 import Timeline from './components/Timeline.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Timeline
   },

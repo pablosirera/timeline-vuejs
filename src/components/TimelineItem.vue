@@ -2,11 +2,15 @@
   <section class="timeline-item">
     <div class="item">
       <span
-        class="dot"
-        :style="{ background: colorDots }"/>
+        :style="{ background: colorDots }"
+        class="dot"/>
       <h3 class="month-item">{{ getNameMonth(itemTimeline) }}</h3>
-      <h4 class="title-item" v-html="itemTimeline.title"></h4>
-      <p class="description-item" v-html="itemTimeline.description"></p>
+      <h4 
+        class="title-item" 
+        v-html="itemTimeline.title"/>
+      <p 
+        class="description-item" 
+        v-html="itemTimeline.description"/>
     </div>
   </section>
 </template>
@@ -22,12 +26,16 @@ export default {
     colorDots: {
       type: String,
       default: '#2da1bf'
+    },
+    dateLocale: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     getNameMonth(item) {
-      const localeBrowser = navigator.language
-      const date = item.from.toLocaleDateString(localeBrowser, { month: 'long' })
+      const locale = this.dateLocale || navigator.language
+      const date = item.from.toLocaleDateString(locale, { month: 'long' })
       return date
     }
   }

@@ -1,6 +1,8 @@
 <template>
   <section class="timeline">
-    <div class="wrapper-timeline" v-if="hasItems">
+    <div 
+      v-if="hasItems" 
+      class="wrapper-timeline">
       <div
         v-for="(timelineContent, timelineIndex) in dataTimeline"
         :class="wrapperItemClass(timelineIndex)"
@@ -12,7 +14,9 @@
             {{ getYear(timelineContent) }}
           </p>
         </div>
-        <TimelineItem :item-timeline="timelineContent"/>
+        <TimelineItem 
+          :item-timeline="timelineContent"
+          :date-locale="dateLocale"/>
       </div>
     </div>
     <p v-else>{{ messageWhenNoItems }}</p>
@@ -31,7 +35,8 @@ export default {
       default: () => []
     },
     messageWhenNoItems: {
-      type: String
+      type: String,
+      default: ''
     },
     colorDots: {
       type: String,
@@ -46,7 +51,12 @@ export default {
       default: false
     },
     order: {
-      type: String
+      type: String,
+      default: ''
+    },
+    dateLocale: {
+      type: String,
+      default: ''
     }
   },
   computed: {

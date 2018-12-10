@@ -116,3 +116,4 @@ export default {
 | uniqueTimeline     |       Boolean        | false                                                  | If true, the timeline isn't separated                       |
 | uniqueYear         |       Boolean        | false                                                  | If true, the timeline isn't separated when is the same year |
 | order              | String (desc or asc) |                                                        | Type of order                                               |
+| dateLocale | String | Locale of the browser | Type of locale, for example 'en-US' |

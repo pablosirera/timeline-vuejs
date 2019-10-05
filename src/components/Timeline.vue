@@ -1,23 +1,21 @@
 <template>
   <section class="timeline">
-    <div 
-      v-if="hasItems" 
-      class="wrapper-timeline">
+    <div v-if="hasItems" class="wrapper-timeline">
       <div
         v-for="(timelineContent, timelineIndex) in dataTimeline"
+        :key="timelineIndex"
         :class="wrapperItemClass(timelineIndex)"
-        :key="timelineIndex">
+      >
         <div class="section-year">
-          <p
-            v-if="hasYear(timelineContent)"
-            class="year">
+          <p v-if="hasYear(timelineContent)" class="year">
             {{ getYear(timelineContent) }}
           </p>
         </div>
-        <TimelineItem 
+        <TimelineItem
           :item-timeline="timelineContent"
           :color-dots="colorDots"
-          :date-locale="dateLocale"/>
+          :date-locale="dateLocale"
+        />
       </div>
     </div>
     <p v-else>{{ messageWhenNoItems }}</p>
@@ -25,11 +23,11 @@
 </template>
 
 <script>
-import TimelineItem from './TimelineItem.vue'
-
 export default {
   name: 'Timeline',
-  components: { TimelineItem },
+  components: {
+    TimelineItem: () => import('./TimelineItem.vue')
+  },
   props: {
     timelineItems: {
       type: Array,
@@ -65,16 +63,22 @@ export default {
       return !!this.timelineItems.length
     },
     dataTimeline() {
-      if (this.order === 'desc') return this.orderItems(this.timelineItems, 'desc')
-      if (this.order === 'asc') return this.orderItems(this.timelineItems, 'asc')
+      if (this.order === 'desc')
+        return this.orderItems(this.timelineItems, 'desc')
+      if (this.order === 'asc')
+        return this.orderItems(this.timelineItems, 'asc')
       return this.timelineItems
     }
   },
   methods: {
     wrapperItemClass(timelineIndex) {
-      const isSameYearPreviousAndCurrent = this.checkYearTimelineItem(timelineIndex)
+      const isSameYearPreviousAndCurrent = this.checkYearTimelineItem(
+        timelineIndex
+      )
       const isUniqueYear =
-        this.uniqueYear && isSameYearPreviousAndCurrent && this.order !== undefined
+        this.uniqueYear &&
+        isSameYearPreviousAndCurrent &&
+        this.order !== undefined
       return {
         'wrapper-item': true,
         'unique-timeline': this.uniqueTimeline || isUniqueYear
@@ -91,7 +95,8 @@ export default {
       const fullNextYear = this.getYear(nextItem)
       const fullCurrentYear = this.getYear(currentItem)
       return (
-        (fullPreviousYear === fullCurrentYear && fullCurrentYear === fullNextYear) ||
+        (fullPreviousYear === fullCurrentYear &&
+          fullCurrentYear === fullNextYear) ||
         fullCurrentYear === fullNextYear
       )
     },
@@ -99,7 +104,9 @@ export default {
       return date.from.getFullYear()
     },
     hasYear(dataTimeline) {
-      return dataTimeline.hasOwnProperty('from') && dataTimeline.from !== undefined
+      return (
+        dataTimeline.hasOwnProperty('from') && dataTimeline.from !== undefined
+      )
     },
     getTimelineItemsAssembled(items) {
       const itemsGroupByYear = []

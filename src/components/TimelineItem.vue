@@ -1,16 +1,10 @@
 <template>
   <section class="timeline-item">
     <div class="item">
-      <span
-        :style="{ background: colorDots }"
-        class="dot"/>
+      <span :style="{ background: colorDots }" class="dot" />
       <h3 class="month-item">{{ getNameMonth(itemTimeline) }}</h3>
-      <h4 
-        class="title-item" 
-        v-html="itemTimeline.title"/>
-      <p 
-        class="description-item" 
-        v-html="itemTimeline.description"/>
+      <h4 class="title-item" v-html="itemTimeline.title" />
+      <p class="description-item" v-html="itemTimeline.description" />
     </div>
   </section>
 </template>

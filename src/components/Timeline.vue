@@ -23,10 +23,12 @@
 </template>
 
 <script>
+import TimelineItem from './TimelineItem.vue'
+
 export default {
   name: 'Timeline',
   components: {
-    TimelineItem: () => import('./TimelineItem.vue')
+    TimelineItem
   },
   props: {
     timelineItems: {

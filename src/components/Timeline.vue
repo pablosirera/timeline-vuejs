@@ -11,9 +11,9 @@
             {{ getYear(timelineContent) }}
           </p>
         </div>
+        <!-- :color-dots="colorDots" -->
         <TimelineItem
           :item-timeline="timelineContent"
-          :color-dots="colorDots"
           :date-locale="dateLocale"
         />
       </div>

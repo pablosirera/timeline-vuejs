@@ -13,8 +13,8 @@
         </div>
         <TimelineItem
           :item-timeline="timelineContent"
-          :color-dots="colorDots"
           :date-locale="dateLocale"
+          :color-dots="colorDots"
         />
       </div>
     </div>

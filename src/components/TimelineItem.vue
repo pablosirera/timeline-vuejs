@@ -1,7 +1,7 @@
 <template>
   <section class="timeline-item">
     <div class="item">
-      <span :style="{ background: colorDots }" class="dot" />
+      <span :style="getBackgroundColour(itemTimeline.color)" class="dot" />
       <h3 class="month-item">{{ getNameMonth(itemTimeline) }}</h3>
       <h4 class="title-item" v-html="itemTimeline.title" />
       <p class="description-item" v-html="itemTimeline.description" />
@@ -27,6 +27,9 @@ export default {
     }
   },
   methods: {
+    getBackgroundColour(color) {
+      return color ? `background:${color}` : `background:${this.colorDots}`
+    },
     getNameMonth(item) {
       const locale = this.dateLocale || navigator.language
       const date = item.from.toLocaleDateString(locale, { month: 'long' })

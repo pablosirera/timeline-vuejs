@@ -1,7 +1,7 @@
 <template>
   <section class="timeline-item">
     <div class="item">
-      <span :style="checkForColourDots(itemTimeline.color)" class="dot" />
+      <span :style="getBackgroundColour(item.color)" class="dot" />
       <h3 class="month-item">{{ getNameMonth(itemTimeline) }}</h3>
       <h4 class="title-item" v-html="itemTimeline.title" />
       <p class="description-item" v-html="itemTimeline.description" />
@@ -27,12 +27,8 @@ export default {
     }
   },
   methods: {
-    checkForColourDots(color) {
-      if (color) {
-        return 'background: ' + color
-      } else {
-        return 'background: ' + this.colorDots
-      }
+    getBackgroundColour(color) {
+      return color ? `background:${color}` : `background:${this.colorDots}`
     },
     getNameMonth(item) {
       const locale = this.dateLocale || navigator.language

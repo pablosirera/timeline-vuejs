@@ -24,7 +24,7 @@
     "url": "https://github.com/pablosirera/timeline-vuejs/issues"
   },
   "homepage": "https://github.com/pablosirera/timeline-vuejs",
-  "author": "Pablo <psirera4@gmail.com>",
+  "author": "Pablo Sirera <psirera4@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "vue": "^2.5.17"

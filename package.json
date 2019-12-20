@@ -1,6 +1,6 @@
 {
   "name": "timeline-vuejs",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "dist/timeline-vuejs.common.js",
   "description": "Minimalist Timeline with VueJS",
   "scripts": {
@@ -32,15 +32,15 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0",
     "@vue/cli-plugin-eslint": "^3.0.0",
-    "@vue/cli-service": "^3.0.0",
+    "@vue/cli-service": "^4.1.1",
     "@vue/eslint-config-prettier": "^4.0.1",
-    "lint-staged": "^7.2.2",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "lint-staged": "^7.2.2",
     "node-sass": "^4.9.0",
+    "querystringify": ">=2.0.0",
     "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.17",
-    "querystringify": ">=2.0.0"
+    "vue-template-compiler": "^2.5.17"
   },
   "files": [
     "dist/*",

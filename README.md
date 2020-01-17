@@ -50,7 +50,7 @@ export default {
   }
   data: () => ({
     messageWhenNoItems: 'There are not items',
-    dataTimeline: [
+    timelineItems: [
       {
         from: new Date(2018, 7),
         title: 'Name',

@@ -2,7 +2,7 @@
   <section class="timeline-item">
     <div class="item">
       <span :style="getBackgroundColour(itemTimeline.color)" class="dot" />
-      <h3 class="month-item">{{ getNameMonth(itemTimeline) }}</h3>
+      <h3 class="date-item">{{ getFormattedDate(itemTimeline) }}</h3>
       <h4 class="title-item" v-html="itemTimeline.title" />
       <p class="description-item" v-html="itemTimeline.description" />
     </div>
@@ -30,10 +30,15 @@ export default {
     getBackgroundColour(color) {
       return color ? `background:${color}` : `background:${this.colorDots}`
     },
-    getNameMonth(item) {
+    getFormattedDate(item) {
       const locale = this.dateLocale || navigator.language
-      const date = item.from.toLocaleDateString(locale, { month: 'long' })
-      return date
+      const nameMonth = item.from.toLocaleDateString(locale, { month: 'long' })
+      if (item.showDayAndMonth) {
+        const day = item.from.getDate()
+        return `${day}. ${nameMonth}`
+      }
+
+      return nameMonth
     }
   }
 }
@@ -46,7 +51,7 @@ export default {
     padding: 20px 0 20px 15px;
     position: relative;
   }
-  .month-item {
+  .date-item {
     margin: 0;
     text-transform: uppercase;
     font-size: 16px;
@@ -68,7 +73,6 @@ export default {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    // background: #2da1bf;
     left: -10px;
     top: 26px;
   }

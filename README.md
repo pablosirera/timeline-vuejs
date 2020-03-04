@@ -81,6 +81,19 @@ export default {
 </script>
 ```
 
+## Available props
+
+| **Props**          |       **Type**       | **Default**                                            | **Description**                                             |
+| :----------------- | :------------------: | :----------------------------------------------------- | :---------------------------------------------------------- |
+| timelineItems      |        Array         | [ ]                                                    | Items value of the timeline                                 |
+| messageWhenNoItems |        String        |                                                        | Message when there are no items                             |
+| colorDots          |        String        | <span style="background-color:#2da1bf;">#2da1bf</span> | Color of the dots                                           |
+| uniqueTimeline     |       Boolean        | false                                                  | If true, the timeline isn't separated                       |
+| uniqueYear         |       Boolean        | false                                                  | If true, the timeline isn't separated when is the same year |
+| order              | String (desc or asc) |                                                        | Type of order                                               |
+| dateLocale | String | Locale of the browser | Type of locale, for example 'en-US' |
+
+
 ## Example with order
 
 ```html
@@ -106,14 +119,51 @@ export default {
 ...
 ```
 
-## Available props
+## Example with day and month on title
 
-| **Props**          |       **Type**       | **Default**                                            | **Description**                                             |
-| :----------------- | :------------------: | :----------------------------------------------------- | :---------------------------------------------------------- |
-| timelineItems      |        Array         | [ ]                                                    | Items value of the timeline                                 |
-| messageWhenNoItems |        String        |                                                        | Message when there are no items                             |
-| colorDots          |        String        | <span style="background-color:#2da1bf;">#2da1bf</span> | Color of the dots                                           |
-| uniqueTimeline     |       Boolean        | false                                                  | If true, the timeline isn't separated                       |
-| uniqueYear         |       Boolean        | false                                                  | If true, the timeline isn't separated when is the same year |
-| order              | String (desc or asc) |                                                        | Type of order                                               |
-| dateLocale | String | Locale of the browser | Type of locale, for example 'en-US' |
+If you want to show day and month on specific items, send true on prop `showDayAndMonth`
+```html
+<script>
+export default {
+  data: () => ({
+    timelineItems: [
+      {
+        from: new Date(2017, 5, 2),
+        title: 'Name',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        showDayAndMonth: true
+      },
+      {
+        from: new Date(2017, 8, 9),
+        title: 'Name',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.'
+      }
+    ]
+  })
+}
+</script>
+```
+
+## Example with diferent colors
+```html
+<script>
+export default {
+  data: () => ({
+    timelineItems: [
+      {
+        from: new Date(2017, 5, 2),
+        title: 'Name',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        color: '#e74c3c'
+      },
+      {
+        from: new Date(2017, 8, 9),
+        title: 'Name',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        color: '#2ecc71',
+      }
+    ]
+  })
+}
+</script>
+```

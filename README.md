@@ -167,3 +167,11 @@ export default {
 }
 </script>
 ```
+
+
+## License
+
+**timeline-vuejs** © [Pablo Sirera](https://pablosirera.com), released under the [MIT](https://github.com/pablosirera/timeline-vuejs/blob/master/LICENSE) License.<br>
+Authored and maintained by Pablo Sirera with help from [contributors](https://github.com/pablosirera/timeline-vuejs/contributors).
+
+> [pablosirera.com](https://pablosirera.com) · GitHub [Pablo Sirera](https://github.com/pablosirera) · Twitter [@pablosirera](https://twitter.com/pablosirera)

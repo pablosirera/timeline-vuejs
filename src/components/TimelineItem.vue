@@ -31,7 +31,7 @@ export default {
       return color ? `background:${color}` : `background:${this.colorDots}`
     },
     getFormattedDate(item) {
-      const locale = this.dateLocale || navigator.language
+      const locale = this.dateLocale || window.navigator.language
       const nameMonth = item.from.toLocaleDateString(locale, { month: 'long' })
       if (item.showDayAndMonth) {
         const day = item.from.getDate()

@@ -130,7 +130,10 @@ export default {
         }
         return a - b
       })
-      return timeItemsOrdered.map(timeItem => itemsGrouped[timeItem]).flat()
+      const mappedItems = timeItemsOrdered.map(
+        timeItem => itemsGrouped[timeItem]
+      )
+      return [].concat.apply([], mappedItems)
     }
   }
 }

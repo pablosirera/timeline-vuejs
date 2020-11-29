@@ -1,47 +1,15 @@
 {
   "name": "timeline-vuejs",
   "version": "1.1.7",
-  "main": "dist/timeline-vuejs.umd.js",
   "description": "Minimalist Timeline with VueJS",
+  "author": "Pablo Sirera <psirera4@gmail.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name timeline-vuejs ./src/components/index.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-bundle": "vue-cli-service build --target lib --name timeline-vuejs ./src/components/index.js"
   },
-  "keywords": [
-    "timeline",
-    "vue-timeline",
-    "timeline-vuejs",
-    "minimalist timeline",
-    "timeline components"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pablosirera/timeline-vuejs"
-  },
-  "bugs": {
-    "url": "https://github.com/pablosirera/timeline-vuejs/issues"
-  },
-  "homepage": "https://github.com/pablosirera/timeline-vuejs",
-  "author": "Pablo Sirera <psirera4@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "vue": "^2.5.17"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0",
-    "@vue/cli-plugin-eslint": "^3.0.0",
-    "@vue/cli-service": "^4.1.1",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "lint-staged": "^7.2.2",
-    "node-sass": "^4.9.0",
-    "querystringify": ">=2.0.0",
-    "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.17"
-  },
+  "main": "dist/timeline-vuejs.umd.js",
   "files": [
     "dist/*",
     "src/*",
@@ -49,9 +17,41 @@
     "*.json",
     "*.js"
   ],
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.9",
+    "@vue/cli-plugin-eslint": "^4.5.9",
+    "@vue/cli-service": "^4.5.9",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^7.2.2",
+    "node-sass": "^4.9.0",
+    "prettier": "^1.19.1",
+    "querystringify": ">=2.0.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "bugs": {
+    "url": "https://github.com/pablosirera/timeline-vuejs/issues"
+  },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "homepage": "https://github.com/pablosirera/timeline-vuejs",
+  "keywords": [
+    "timeline",
+    "vue-timeline",
+    "timeline-vuejs",
+    "minimalist timeline",
+    "timeline components"
+  ],
+  "license": "MIT",
   "lint-staged": {
     "*.js": [
       "vue-cli-service lint",
@@ -61,5 +61,9 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablosirera/timeline-vuejs"
   }
 }

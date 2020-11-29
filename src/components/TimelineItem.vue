@@ -47,26 +47,30 @@ export default {
 <style lang="scss" scoped>
 .timeline-item {
   .item {
-    border-left: 5px solid #ccd5db;
+    border-inline-start: 5px solid #ccd5db;
     padding: 20px 0 20px 15px;
     position: relative;
   }
+
   .date-item {
     margin: 0;
     text-transform: uppercase;
     font-size: 16px;
     letter-spacing: 2px;
   }
+
   .title-item {
     margin: 0;
     padding: 5px 0;
     font-size: 15px;
     font-weight: 500;
   }
+
   .description-item {
     font-weight: 100;
     margin: 0;
   }
+
   .dot {
     display: block;
     position: absolute;
@@ -75,6 +79,22 @@ export default {
     border-radius: 50%;
     left: -10px;
     top: 26px;
+  }
+}
+
+html[dir='rtl'],
+body[dir='rtl'] {
+  .item {
+    padding: 20px 15px 20px 0;
+  }
+
+  .date-item {
+    letter-spacing: unset;
+  }
+
+  .dot {
+    right: -10px;
+    left: unset;
   }
 }
 </style>

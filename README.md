@@ -113,7 +113,7 @@ export default {
   <Timeline
     :timeline-items="timelineItems"
     :message-when-no-items="messageWhenNoItems"
-    :unique-year="true"
+    unique-year
     order="asc"/>
 </template>
 ...

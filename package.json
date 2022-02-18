@@ -26,8 +26,8 @@
   "homepage": "https://github.com/pablosirera/timeline-vuejs",
   "author": "Pablo Sirera <psirera4@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "vue": "^2.5.17"
+  "peerDependencies": {
+    "vue": "^2.5.x || 3.x "
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0",

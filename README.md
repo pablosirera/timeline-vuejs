@@ -168,7 +168,8 @@ export default {
 </script>
 ```
 
-## Overwrite Item using slot
+## Overwrite item using slot
+Replace the default content of timeline item using v-slot
 ```html
 <Timeline :timeline-items="items">
   <template v-slot:overwrite="{item}">

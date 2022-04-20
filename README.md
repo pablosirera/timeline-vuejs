@@ -168,6 +168,16 @@ export default {
 </script>
 ```
 
+## Overwrite Item using slot
+```html
+<Timeline :timeline-items="items">
+  <template v-slot:overwrite="{item}">
+    <b>{{ item.label }}</b>
+    <h4>{{ item.title }}</h4>
+    <p>{{ item.description }}</p>
+  </template>
+</Timeline>
+```
 
 ## License
 

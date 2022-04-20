@@ -15,7 +15,11 @@
           :item-timeline="timelineContent"
           :date-locale="dateLocale"
           :color-dots="colorDots"
-        />
+        >
+          <template v-slot:overwrite="{ item }">
+            <slot name="overwrite" :item="item"></slot>
+          </template>
+        </TimelineItem>
       </div>
     </div>
     <p v-else>{{ messageWhenNoItems }}</p>

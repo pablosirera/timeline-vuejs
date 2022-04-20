@@ -3,8 +3,11 @@
     <div class="item">
       <span :style="getBackgroundColour(itemTimeline.color)" class="dot" />
       <h3 class="date-item">{{ getFormattedDate(itemTimeline) }}</h3>
-      <h4 class="title-item" v-html="itemTimeline.title" />
-      <p class="description-item" v-html="itemTimeline.description" />
+      <template v-if="$slots.overwrite">
+        <h4 class="title-item" v-html="itemTimeline.title" />
+        <p class="description-item" v-html="itemTimeline.description" />
+      </template>
+      <slot v-else name="overwrite" :item="itemTimeline"></slot>
     </div>
   </section>
 </template>
